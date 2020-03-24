@@ -1,0 +1,8 @@
+durée longue - 3 images en fondue. Meme format d'image
+exemple 
+5 sec fondu IN -20 sec image - 10 sec fondu - 20 sec image - 10 sec fondu - 20 sec image - 5 sec fondu OUT 
+TOTAL 1min30
+
+Bouton LANCER - RELANCER 
+
+Son - deux sons qui s'enchaines - ratio de durée entre les sons aléatoire 
