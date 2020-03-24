@@ -9,7 +9,7 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<button class = "button" id="start">start</button>
+
 
 <script>
 
@@ -26,15 +26,15 @@ $(document).ready(function(){
   $('#start').click(function(){
 	  $("#start").hide();
         audioElement.play();
-		setTimeout(stopAudio, 52000);
+		setTimeout(stopAudio, 92000);
 		
 		
 	$("div.first").hide().css("opacity",100);
 	$("div.second").hide().css("opacity",100);
 	$("div.third").hide().css("opacity",100);
-	$("div.first").fadeIn(5000).delay(10000).fadeOut(5000);
-	$("div.second").delay(15000).fadeIn(5000).delay(10000).fadeOut(5000);
-	$("div.third").delay(30000).fadeIn(5000).delay(10000).fadeOut(5000).val(1);
+	$("div.first").fadeIn(5000).delay(30000).fadeOut(20000);
+	$("div.second").delay(35000).fadeIn(20000).delay(30000).fadeOut(20000);
+	$("div.third").delay(75000).fadeIn(20000).delay(30000).fadeOut(5000).val(1);
 	
 	
 	
@@ -44,16 +44,16 @@ $(document).ready(function(){
 
 </script>
 
+<input type="submit" class = "button" id="start" value="Start !">
 
 
+<!-- ---------------------------------------------------------------- -->
 
-<!--> ---------------------------------------------------------------- <!-->
-
-<div class="first" id="photo1" style="position:absolute;">
+<div class="first imageDiv" id="photo1" style="position:absolute;">
 
 <script type="text/javascript">
 var imgA = document.createElement("img");
-var random1 = Math.floor(((Math.random() * 100) /17 )+1); // random entre 1 et 6
+var random1 = 2;//Math.floor(((Math.random() * 100) /17 )+1); // random entre 1 et 6
 imgA.src = "photo/" + random1 + ".jpg";
 imgA.classList.add('imgSize');
 
@@ -63,13 +63,13 @@ document.getElementById('photo1').appendChild(imgA);
 </script>
 </div>
 
-<!--> ---------------------------------------------------------------- <!-->
+<!-- ------------------------------------------------------------------>
 
-<div class="second" id="photo2" style="position:absolute;">
+<div class="second imageDiv" id="photo2" style="position:absolute;">
 
 <script type="text/javascript">
 var imgB = document.createElement("img");
-var random2 = Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
+var random2 = 4;// Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
 if(random2 == random1) {
 	if(random2 == 20) {
 		random3 -= 1;
@@ -86,12 +86,12 @@ document.getElementById('photo2').appendChild(imgB);
 </script>
 </div>
 
-<!--> ---------------------------------------------------------------- <!-->
+<!-- ---------------------------------------------------------------- -->
 
-<div class="third" id="photo3" style="position:absolute;">
+<div class="third imageDiv" id="photo3" style="position:absolute;">
 <script type="text/javascript">
 var imgC = document.createElement("img");
-var random3 = Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
+var random3 = 5;//Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
 if((random3 == random1) || (random3 == random2)) 
 {
 	if(random3 == 20) 
@@ -118,14 +118,15 @@ imgC.src = "photo/" + random3 + ".jpg";
 imgC.classList.add('imgSize');
 
 document.getElementById('photo3').appendChild(imgC);
-document.write(random3);
+
 </script>
 </div>
 
-<!--> ---------------------------------------------------------------- <!-->
+
+<!-- ---------------------------------------------------------------- -->
 
  
-
+<!--
  
 <script> /*	<h1>
  
@@ -151,7 +152,7 @@ document.write(random3);
          </script>
       </h1>
 	  */</script>
-      
+      -->
       
 
 </body>
