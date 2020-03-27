@@ -53,7 +53,8 @@ var transitionTime4 = transitionTime3 - 8000;
 $(document).ready(function(){
 	
   $('#start').click(function(){
-	  $("#start").hide();
+	  $("#start").hide().delay(130000);
+	  
        play('audioPlayer1');
 		setTimeout(fadeOut, transitionTime, 'audioPlayer1');
 		setTimeout(fadeIn, transitionTime2,'audioPlayer2');
@@ -61,22 +62,26 @@ $(document).ready(function(){
 		setTimeout(fadeOut, transitionTime3, 'audioPlayer2');
 		setTimeout(fadeIn, transitionTime4,'audioPlayer3');
 		setTimeout(play, transitionTime4, 'audioPlayer3');
-		setTimeout(fadeOut, 115000, 'audioPlayer3');
+		setTimeout(fadeOut, 120000, 'audioPlayer3');
+		setTimeout(reloadPage,145000);
 		
 		
 	$("div.first").hide().css("opacity",100);
 	$("div.second").hide().css("opacity",100);
 	$("div.third").hide().css("opacity",100);
-	$("div.first").fadeIn(5000).delay(30000).fadeOut(20000);
-	$("div.second").delay(35000).fadeIn(20000).delay(30000).fadeOut(20000);
-	$("div.third").delay(75000).fadeIn(20000).delay(30000).fadeOut(5000).val(1);
+	$("div.first").fadeIn(10000).delay(30000).fadeOut(20000);
+	$("div.second").delay(40000).fadeIn(20000).delay(30000).fadeOut(20000);
+	$("div.third").delay(80000).fadeIn(20000).delay(30000).fadeOut(5000);
+	
 	
 	
 	
   });
 });
 
-
+function reloadPage(){
+	location.reload();
+}
 
 function play(idPlayer) {
     var player = document.querySelector('#' + idPlayer);
@@ -92,36 +97,36 @@ function resume(idPlayer) {
 }
 
 function fadeIn(idPlayer) {
-var vol = 0;
+var volIn = 0;
 var interval = 120; // 200ms interval
 var player = document.querySelector('#' + idPlayer);
 
-var fadeIn = setInterval(
+var fadein = setInterval(
   function() {
     // Increment the volume by 0.01 as long as it is under 1
-    if (vol < 1) {
-      vol += 0.01;
-	  player.volume = vol;
+    if (volIn < 0.99) {
+      volIn += 0.01;
+	  player.volume = volIn;
 	  
     }
     else {
       // Stop the setInterval when 1 is reached
-      clearInterval(fadeout);
+      clearInterval(fadein);
     }
   }, interval);
 }
 
 function fadeOut(idPlayer) {
-var vol = 1;
+var volOut = 1;
 var interval = 120; // 200ms interval
 var player = document.querySelector('#' + idPlayer);
 
 var fadeout = setInterval(
   function() {
     // Reduce volume by 0.01 as long as it is above 0
-    if (vol > 0) {
-      vol -= 0.01;
-	  player.volume = vol;
+    if (volOut > 0.01) {
+      volOut -= 0.01;
+	  player.volume = volOut;
 	  
     }
     else {
@@ -134,8 +139,10 @@ var fadeout = setInterval(
 
 </script>
 
-<input type="submit" class = "button" id="start" value="Start !">
+<div>
 
+<input type="submit" class = "button" id="start" value="Entrez">
+</div>
 
 <!-- ---------------------------------------------------------------- -->
 
