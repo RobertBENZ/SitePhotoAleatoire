@@ -11,22 +11,51 @@
 
 
 
+<audio id="audioPlayer1">
+        <source src="son/1.wav" type="audio/wav" >
+    </audio>
+    
+    <audio id="audioPlayer2">
+        <source src="son/2.wav" type="audio/wav" >
+    </audio>
+    
+    <audio id="audioPlayer3">
+        <source src="son/3.wav" type="audio/wav" >
+    </audio>
+
 <script>
-
-function stopAudio() {
-  audioElement.pause();
-}
-
-var audioElement = document.createElement('audio');
+	
 var random4 = Math.floor(((Math.random() * 100) /20)+1); // random entre 1 et 5
-    audioElement.setAttribute('src' , 'son/' + random4 + '.wav');
+var audio1 = document.getElementById('audioPlayer1');
+    audio1.src = 'son/' + random4 + '.wav' ;
+	
+var random5 = Math.floor(((Math.random() * 100) /20)+1); // random entre 1 et 5
+if(random4 == random5) { 
+	if (random5 == 1) random5++;
+	else random5 --;
+	}
+	
+var audio2 = document.getElementById('audioPlayer2');
+    audio2.src = 'son/' + random5 + '.wav' ;
+
+var transitionTime = Math.floor((((Math.random() * 100)/3)+10 )*1000); //random entre 15000 et 48000
+var transitionTime2 = transitionTime - 5000;
+var transitionTime3 = Math.floor((((Math.random() * 100)/3)+60 )*1000); //random entre 60000 et 980000
+var transitionTime4 = transitionTime3 - 5000;
+  //  audioElement.setAttribute('src' , 'son/' + random4 + '.wav');
 
 $(document).ready(function(){
 	
   $('#start').click(function(){
 	  $("#start").hide();
-        audioElement.play();
-		setTimeout(stopAudio, 92000);
+       play('audioPlayer1');
+		setTimeout(fadeOut, transitionTime, 'audioPlayer1');
+		setTimeout(fadeIn, transitionTime2,'audioPlayer2');
+		setTimeout(play, transitionTime2, 'audioPlayer2');
+		setTimeout(fadeOut, transitionTime3, 'audioPlayer2');
+		setTimeout(fadeIn, transitionTime4,'audioPlayer3');
+		setTimeout(play, transitionTime4, 'audioPlayer3');
+		setTimeout(fadeOut, 115000, 'audioPlayer3');
 		
 		
 	$("div.first").hide().css("opacity",100);
@@ -40,6 +69,61 @@ $(document).ready(function(){
 	
   });
 });
+
+
+
+function play(idPlayer) {
+    var player = document.querySelector('#' + idPlayer);
+	player.play();
+        
+}
+
+function resume(idPlayer) {
+    var player = document.querySelector('#' + idPlayer);
+	
+    player.currentTime = 0;
+    player.pause();
+}
+
+function fadeIn(idPlayer) {
+var vol = 0;
+var interval = 120; // 200ms interval
+var player = document.querySelector('#' + idPlayer);
+
+var fadeIn = setInterval(
+  function() {
+    // Increment the volume by 0.01 as long as it is under 1
+    if (vol < 1) {
+      vol += 0.01;
+	  player.volume = vol;
+	  
+    }
+    else {
+      // Stop the setInterval when 1 is reached
+      clearInterval(fadeout);
+    }
+  }, interval);
+}
+
+function fadeOut(idPlayer) {
+var vol = 1;
+var interval = 120; // 200ms interval
+var player = document.querySelector('#' + idPlayer);
+
+var fadeout = setInterval(
+  function() {
+    // Reduce volume by 0.01 as long as it is above 0
+    if (vol > 0) {
+      vol -= 0.01;
+	  player.volume = vol;
+	  
+    }
+    else {
+      // Stop the setInterval when 0 is reached
+      clearInterval(fadeout);
+    }
+  }, interval);
+}
 
 
 </script>
