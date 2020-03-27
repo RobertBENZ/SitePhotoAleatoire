@@ -9,7 +9,7 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
+<style> h1 {opacity:0;} </style> <!-- Commenter pour voir les nb aleatoirs -->
 
 <audio id="audioPlayer1">
         <source src="son/1.wav" type="audio/wav" >
@@ -24,25 +24,40 @@
     </audio>
 
 <script>
+
+
+
+var photoNb = 3;
+var soundNb = 8;
+
+var photoArray = [photoNb];
+for(var i = 0 ; i < photoNb ; i ++){
+photoArray[i] = i+1;	
+}
+
+var soundArray = [soundNb];
+for(var i = 0 ; i < soundNb ; i ++) {
+soundArray[i] = i+1;	
+}
+
+ ShuffleArray(photoArray);
+ ShuffleArray(soundArray);
 	
-var random4 = Math.floor(((Math.random() * 100) /20)+1); // random entre 1 et 5
+
 var audio1 = document.getElementById('audioPlayer1');
-    audio1.src = 'son/' + random4 + '.wav' ;
-	
-var random5 = Math.floor(((Math.random() * 100) /20)+1); // random entre 1 et 5
-if(random4 == random5) { 
-	if (random5 == 1) random5++;
-	else random5 --;
-	}
+    audio1.src = 'son/' + soundArray[0] + '.wav' ;
 	
 var audio2 = document.getElementById('audioPlayer2');
-    audio2.src = 'son/' + random5 + '.wav' ;
+    audio2.src = 'son/' + soundArray[1] + '.wav' ;
+	
+var audio3 = document.getElementById('audioPlayer3');
+    audio3.src = 'son/' + soundArray[2] + '.wav' ;
 
-var transitionTime = Math.floor((((Math.random() * 100)/3)+10 )*1000); //random entre 15000 et 48000
+var transitionTime = randomInterval(15000,48000); //random entre 15000 et 48000
 var transitionTime2 = transitionTime - 8000;
-var transitionTime3 = Math.floor((((Math.random() * 100)/3)+60 )*1000); //random entre 60000 et 980000
+var transitionTime3 = randomInterval(60000,98000); //random entre 60000 et 980000
 var transitionTime4 = transitionTime3 - 8000;
-  //  audioElement.setAttribute('src' , 'son/' + random4 + '.wav');
+  
 
 $(document).ready(function(){
 	
@@ -56,8 +71,8 @@ $(document).ready(function(){
 		setTimeout(fadeOut, transitionTime3, 'audioPlayer2');
 		setTimeout(fadeIn, transitionTime4,'audioPlayer3');
 		setTimeout(play, transitionTime4, 'audioPlayer3');
-		setTimeout(fadeOut, 120000, 'audioPlayer3');
-		setTimeout(reloadPage,145000);
+		setTimeout(fadeOut, 122000, 'audioPlayer3');
+		setTimeout(reloadPage,140000);
 		
 		
 	$("div.first").hide().css("opacity",100);
@@ -72,6 +87,22 @@ $(document).ready(function(){
 	
   });
 });
+
+function ShuffleArray (a) {
+	var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+	
+}
+
+function randomInterval(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
 
 function reloadPage(){
 	location.reload();
@@ -144,13 +175,10 @@ var fadeout = setInterval(
 
 <script type="text/javascript">
 var imgA = document.createElement("img");
-var random1 = 2;//Math.floor(((Math.random() * 100) /17 )+1); // random entre 1 et 6
-imgA.src = "photo/" + random1 + ".jpg";
+imgA.src = "photo/" + photoArray[0] + ".jpg";
 imgA.classList.add('imgSize');
 
 document.getElementById('photo1').appendChild(imgA);
-
-
 </script>
 </div>
 
@@ -160,17 +188,7 @@ document.getElementById('photo1').appendChild(imgA);
 
 <script type="text/javascript">
 var imgB = document.createElement("img");
-var random2 = 4;// Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
-if(random2 == random1) {
-	if(random2 == 20) {
-		random3 -= 1;
-	}
-	else {
-		random2 += 1;
-	}
-}
-
-imgB.src = "photo/" + random2 + ".jpg";
+imgB.src = "photo/" + photoArray[1] + ".jpg";
 imgB.classList.add('imgSize');
 
 document.getElementById('photo2').appendChild(imgB);
@@ -182,34 +200,10 @@ document.getElementById('photo2').appendChild(imgB);
 <div class="third imageDiv" id="photo3" style="position:absolute;">
 <script type="text/javascript">
 var imgC = document.createElement("img");
-var random3 = 5;//Math.floor(((Math.random() * 100) /17)+1); // random entre 1 et 6
-if((random3 == random1) || (random3 == random2)) 
-{
-	if(random3 == 20) 
-	{
-		if((random1== (random3-2)) ||(random2 == (random3-2))) {
-			random3 -= 3;
-		}
-		else {
-			random3 -=2;
-		}
-	}
-	else
-	{
-		if ((random1 == (random3+1)) ||(random2 == (random3+1))) {
-			random3 += 2;
-		}
-		else {
-			random3 += 1;
-		}
-	}
-}
-
-imgC.src = "photo/" + random3 + ".jpg";
+imgC.src = "photo/" + photoArray[2] + ".jpg";
 imgC.classList.add('imgSize');
 
 document.getElementById('photo3').appendChild(imgC);
-
 </script>
 </div>
 
@@ -217,33 +211,44 @@ document.getElementById('photo3').appendChild(imgC);
 <!-- ---------------------------------------------------------------- -->
 
  
-<!--
+
  
-<script> /*	<h1>
+	<h1 id="info">
  
 
-         Aléa 1 = 
+         Photo 1 = 
          <script type="text/javascript">
-            document.write(random1);
+            document.write(photoArray[0]);
          </script>
          <br />
-          Aléa 2 = 
+          Photo 2 = 
          <script type="text/javascript">
-            document.write(random2)
+            document.write(photoArray[1]);
          </script>
          <br />
-         Aléa 3 = 
+         Photo 3 = 
          <script type="text/javascript">
-            document.write(random3)
+            document.write(photoArray[2]);
          </script>
          <br />
-         Aléa 4 = 
+          Son 1 = 
          <script type="text/javascript">
-            document.write(random4)
+            document.write(soundArray[0]);
          </script>
+         <br />
+          Son 2 = 
+         <script type="text/javascript">
+            document.write(soundArray[1]);
+         </script>
+         <br />
+         Son 3 = 
+         <script type="text/javascript">
+            document.write(soundArray[2]);
+         </script>
+         <br />
+        
       </h1>
-	  */</script>
-      -->
+	
       
 
 </body>

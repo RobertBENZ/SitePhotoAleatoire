@@ -10,7 +10,8 @@ body{
 	
 h1{
 	position: relative;
-	left: 900px;
+	font-size: 12px;
+	left: 20px;
 	color:#FFF
 }
 
@@ -35,18 +36,6 @@ div {
 	 opacity: 0 ; 
   }
   
-  .button2{
-	  width: 80vw;
-    position: fixed;
-    top: 50vh;
-    left: 50vw;
-    max-width: 430px;
-    transform: translateY(-50%) translateX(-50%);
-    z-index: 2;
-	text-transform: uppercase;
-text-decoration: none;
-padding: 20px;
-	}
   
   .button{
 	  width: 80vw;
